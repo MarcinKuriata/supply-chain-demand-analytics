@@ -179,3 +179,15 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Data files & directories
+data/
+*.csv
+*.xlsx
+
+# Power BI binaries
+*.pbix
+
+# Virtual environment & notebooks
+venv/
+.ipynb_checkpoints/
