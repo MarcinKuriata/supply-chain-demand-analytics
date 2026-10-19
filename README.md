@@ -68,37 +68,25 @@ supply-chain-demand-analytics/
 
 ---
 
-## 📊 Core Supply Chain Formulas
+📊 Core Supply Chain Formulas
+Forecast Variance:
 
-- **Forecast Variance:**
-  $$\text{Forecast Variance} = \text{Actual Demand} - \text{Baseline Forecast}$$
+Forecast Variance = Actual Demand - Baseline Forecast
 
-- **On-Time Delivery Rate (OTIF component):**
-  $$\text{On-Time Delivery Rate} = \left( \frac{\sum \text{On-Time Deliveries}}{\sum \text{Total Shipments}} \right) \times 100\%$$
+On-Time Delivery Rate (OTIF component):
 
-- **Cumulative Pareto Contribution:**
-  $$\text{Cumulative Pareto Contribution} = \frac{\sum_{i=1}^{k} \text{Demand}_i}{\sum_{\text{all}} \text{Demand}} \times 100\%$$
+OTIF Rate (%) = (On-Time Deliveries / Total Shipments) * 100
 
----
+Cumulative Pareto Contribution:
 
-## 🚀 Execution & Reproducibility
+Cumulative Share (%) = (Running Total Units / Grand Total Units) * 100
 
-1. **Clone repository:**
-<pre>
-git clone [https://github.com/MarcinKuriata/supply-chain-demand-analytics.git](https://github.com/MarcinKuriata/supply-chain-demand-analytics.git)
-cd supply-chain-demand-analytics
-</pre>
+🚀 How to Run
+1. Setup Environment
+Install the required data processing library:
 
-2. **Install dependencies:**
-<pre>
-python -m pip install pandas
-</pre>
+2. Ingest Raw Data
+Place DataCoSupplyChainDataset.csv into data/raw/ and execute the ETL pipeline:
 
-3. **Download dataset:** Place `DataCoSupplyChainDataset.csv` into `data/raw/`.
-
-4. **Run ingestion pipeline:**
-<pre>
-python python/ingest_to_sql.py
-</pre>
-
-5. **Execute SQL analytics:** Execute files `01`, `02`, and `03` via `python/run_sql.py` or inspect directly using SQLite Viewer.
+3. Explore SQL Analytics
+Open data/supply_chain.db in VS Code using the SQLite Viewer extension to query the Star Schema tables and business KPI views.
