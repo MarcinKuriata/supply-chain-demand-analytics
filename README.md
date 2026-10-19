@@ -67,26 +67,26 @@ supply-chain-demand-analytics/
 - **`view_executive_monthly_summary`:** Consolidated high-level monthly dashboard table linking total demand, revenue, profit, and OTIF rates.
 
 ---
+## 📊 Core Supply Chain Formulas
 
-📊 Core Supply Chain Formulas
-Forecast Variance:
+- **Forecast Variance:**
+  `Forecast Variance = Actual Demand - Baseline Forecast`
 
-Forecast Variance = Actual Demand - Baseline Forecast
+- **On-Time Delivery Rate (OTIF component):**
+  `OTIF Rate (%) = (On-Time Deliveries / Total Shipments) * 100`
 
-On-Time Delivery Rate (OTIF component):
+- **Cumulative Pareto Contribution:**
+  `Cumulative Share (%) = (Running Total Units / Grand Total Units) * 100`
 
-OTIF Rate (%) = (On-Time Deliveries / Total Shipments) * 100
+---
 
-Cumulative Pareto Contribution:
+## 🚀 How to Run
 
-Cumulative Share (%) = (Running Total Units / Grand Total Units) * 100
-
-🚀 How to Run
-1. Setup Environment
+### 1. Setup Environment
 Install the required data processing library:
-
-2. Ingest Raw Data
-Place DataCoSupplyChainDataset.csv into data/raw/ and execute the ETL pipeline:
-
-3. Explore SQL Analytics
-Open data/supply_chain.db in VS Code using the SQLite Viewer extension to query the Star Schema tables and business KPI views.
+python -m pip install pandas
+### 2. Ingest Raw Data
+Place `DataCoSupplyChainDataset.csv` into `data/raw/` and execute the ETL pipeline:
+python python/ingest_to_sql.py
+### 3. Explore SQL Analytics
+Open `data/supply_chain.db` in VS Code using the **SQLite Viewer** extension to query the Star Schema tables and business KPI views.
