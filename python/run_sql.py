@@ -4,7 +4,7 @@ import sqlite3
 conn = sqlite3.connect("data/supply_chain.db")
 
 # 2. Read the SQL script file
-with open("SQL/03_business_views_kpi.sql", "r", encoding="utf-8") as file:
+with open("SQL/01_ddl_star_schema.sql", "r", encoding="utf-8") as file:
     sql_script = file.read()
 
 # 3. Execute all SQL statements
