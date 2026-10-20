@@ -90,3 +90,37 @@ Place `DataCoSupplyChainDataset.csv` into `data/raw/` and execute the ETL pipeli
 python python/ingest_to_sql.py
 ### 3. Explore SQL Analytics
 Open `data/supply_chain.db` in VS Code using the **SQLite Viewer** extension to query the Star Schema tables and business KPI views.
+
+## 🛡️ Data Quality Assurance & Validation
+
+Prior to analytics modeling, a dedicated automated audit pipeline (`python/sql_checks.py` executing `SQL/00_data_quality_checks.sql`) was implemented to enforce strict enterprise-grade integrity constraints:
+
+| Integrity Check | Target | Result | Status |
+| :--- | :---: | :---: | :---: |
+| **Primary Key Uniqueness** (`order_item_id` uniqueness) | 0 duplicates | 0 | PASSED |
+| **Referential Integrity** (Orphan `product_id`) | 0 orphans | 0 | PASSED |
+| **Referential Integrity** (Orphan `geography_id`) | 0 orphans | 0 | PASSED |
+| **Demand Logic Constraints** (`demand_units > 0`) | 0 anomalies | 0 | PASSED |
+| **Chronological Feasibility** (`shipping_date >= order_date`) | 0 violations | 0 | PASSED |
+
+---
+
+## 🏗️ Analytics Architecture & Star Schema
+
+The raw transactional data (`180,519` rows) was ingested into an optimized Star Schema in SQLite (`data/supply_chain.db`) with dedicated b-tree indexing:
+
+- **`fact_order_items`**: Central fact table tracking demand units, net sales, lead times, delivery delays, and OTIF binary flags.
+- **`dim_product`**: Product catalog, category hierarchy, and base pricing.
+- **`dim_customer`**: Customer segmentation and geographic profiles.
+- **`dim_geography`**: Clean surrogate-keyed market and regional hierarchy.
+
+---
+
+## 📈 Power BI Integration & S&OP Metrics
+
+Connected to Power BI Desktop via Python Direct ETL and modeled with dedicated DAX measures in `_Measures`:
+- **`Total Demand Units`**: `SUM(fact_order_items[demand_units])`
+- **`Total Net Sales`**: `SUM(fact_order_items[net_sales_amount])`
+- **`OTIF Delivery Rate %`**: Dynamic service level tracking on-time vs scheduled fulfillment.
+- **`Avg Delivery Delay Days`**: Lead-time variance and delay severity.
+- **Visuals**: S&OP demand trend correlation with OTIF rates, market risk distribution, and interactive Dark UI design.
