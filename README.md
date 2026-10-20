@@ -37,6 +37,21 @@ supply-chain-demand-analytics/
 
 ---
 
+## 🛡️ Data Quality Assurance & Validation
+
+Prior to analytics modeling, a dedicated automated audit pipeline (`python/sql_checks.py` executing `SQL/00_data_quality_checks.sql`) was implemented to enforce strict enterprise-grade integrity constraints:
+
+| Integrity Check | Target | Result | Status |
+| :--- | :---: | :---: | :---: |
+| **Primary Key Uniqueness** (`order_item_id` uniqueness) | 0 duplicates | 0 | PASSED |
+| **Referential Integrity** (Orphan `product_id`) | 0 orphans | 0 | PASSED |
+| **Referential Integrity** (Orphan `geography_id`) | 0 orphans | 0 | PASSED |
+| **Demand Logic Constraints** (`demand_units > 0`) | 0 anomalies | 0 | PASSED |
+| **Chronological Feasibility** (`shipping_date >= order_date`) | 0 violations | 0 | PASSED |
+
+---
+
+
 ## ⚙️ Technical Implementation & Workflow
 
 ### 1. Data Ingestion & Pipeline (Python ETL)
@@ -91,19 +106,7 @@ python python/ingest_to_sql.py
 ### 3. Explore SQL Analytics
 Open `data/supply_chain.db` in VS Code using the **SQLite Viewer** extension to query the Star Schema tables and business KPI views.
 
-## 🛡️ Data Quality Assurance & Validation
 
-Prior to analytics modeling, a dedicated automated audit pipeline (`python/sql_checks.py` executing `SQL/00_data_quality_checks.sql`) was implemented to enforce strict enterprise-grade integrity constraints:
-
-| Integrity Check | Target | Result | Status |
-| :--- | :---: | :---: | :---: |
-| **Primary Key Uniqueness** (`order_item_id` uniqueness) | 0 duplicates | 0 | PASSED |
-| **Referential Integrity** (Orphan `product_id`) | 0 orphans | 0 | PASSED |
-| **Referential Integrity** (Orphan `geography_id`) | 0 orphans | 0 | PASSED |
-| **Demand Logic Constraints** (`demand_units > 0`) | 0 anomalies | 0 | PASSED |
-| **Chronological Feasibility** (`shipping_date >= order_date`) | 0 violations | 0 | PASSED |
-
----
 
 ## 🏗️ Analytics Architecture & Star Schema
 
