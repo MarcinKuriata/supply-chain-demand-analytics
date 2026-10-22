@@ -4,7 +4,7 @@ An enterprise-grade analytical portfolio project modeling, analyzing, and foreca
 
 ---
 
-## 🎯 Business Problem & Context
+##  Business Problem & Context
 
 Global supply chains face the dual challenge of inventory cost optimization and service level maintenance:
 1. **Stockouts & Fulfillment Delays:** Inaccurate demand visibility leads to shipment delays, compromised lead times, and drops in On-Time Delivery rates.
@@ -15,7 +15,7 @@ Ingest high-granularity operational data (180k+ transactions), structure it into
 
 ---
 
-## 🏗️ Repository Architecture
+##  Repository Architecture
 
 <pre>
 supply-chain-demand-analytics/
@@ -37,7 +37,7 @@ supply-chain-demand-analytics/
 
 ---
 
-## 🛡️ Data Quality Assurance & Validation
+##  Data Quality Assurance & Validation
 
 Prior to analytics modeling, a dedicated automated audit pipeline (`python/sql_checks.py` executing `SQL/00_data_quality_checks.sql`) was implemented to enforce strict enterprise-grade integrity constraints:
 
@@ -52,7 +52,7 @@ Prior to analytics modeling, a dedicated automated audit pipeline (`python/sql_c
 ---
 
 
-## ⚙️ Technical Implementation & Workflow
+##  Technical Implementation & Workflow
 
 ### 1. Data Ingestion & Pipeline (Python ETL)
 - **Engine:** Python (`pandas`, `sqlite3`).
@@ -82,7 +82,7 @@ Prior to analytics modeling, a dedicated automated audit pipeline (`python/sql_c
 - **`view_executive_monthly_summary`:** Consolidated high-level monthly dashboard table linking total demand, revenue, profit, and OTIF rates.
 
 ---
-## 📊 Core Supply Chain Formulas
+##  Core Supply Chain Formulas
 
 - **Forecast Variance:**
   `Forecast Variance = Actual Demand - Baseline Forecast`
@@ -95,7 +95,7 @@ Prior to analytics modeling, a dedicated automated audit pipeline (`python/sql_c
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 ### 1. Setup Environment
 Install the required data processing library:
@@ -108,7 +108,7 @@ Open `data/supply_chain.db` in VS Code using the **SQLite Viewer** extension to 
 
 
 
-## 🏗️ Analytics Architecture & Star Schema
+##  Analytics Architecture & Star Schema
 
 The raw transactional data (`180,519` rows) was ingested into an optimized Star Schema in SQLite (`data/supply_chain.db`) with dedicated b-tree indexing:
 
@@ -119,7 +119,7 @@ The raw transactional data (`180,519` rows) was ingested into an optimized Star 
 
 ---
 
-## 🖼️ Executive Dashboard Preview (Dark UI Control Tower)
+##  Executive Dashboard Preview (Dark UI Control Tower)
 
 The reporting layer is designed as an executive-ready **One-Pager Control Tower** leveraging a modern dark theme (`#0B0F19`) with precise Cyan (`#06B6D4`) analytical accents and strategic Crimson (`#DC2626`) risk indicators.
 
@@ -134,7 +134,7 @@ A dedicated spatial deep-dive mapping global net sales volume against localized 
 ![Global Supply Chain Map](visuals/map_deep_dive.png)
 ---
 
-## 📈 Power BI Integration & S&OP Metrics
+##  Power BI Integration & S&OP Metrics
 
 Connected to Power BI Desktop via Python Direct ETL and modeled with dedicated DAX measures in `_Measures`:
 - **`Total Demand Units`**: `SUM(fact_order_items[demand_units])`
