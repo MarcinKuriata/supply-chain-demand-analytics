@@ -145,7 +145,7 @@ Connected to Power BI Desktop via Python Direct ETL and modeled with dedicated D
 
 ---
 
-## ⚠️ Engineering Challenges & ETL Troubleshooting (Real-World Friction)
+##  Engineering Challenges & ETL Troubleshooting (Real-World Friction)
 
 Ingesting and transforming nearly 180k raw transactional records (*DataCo Smart Supply Chain*) came with distinct data friction points. Below are the key engineering challenges faced during the ETL and SQL modeling phases, along with their solutions:
 
@@ -163,7 +163,7 @@ Ingesting and transforming nearly 180k raw transactional records (*DataCo Smart 
 
 ---
 
-## 💡 Executive Insights & Strategic Business Takeaways
+##  Executive Insights & Strategic Business Takeaways
 
 Built as an **Executive Control Tower (Dark UI)**, the finalized dashboard shifts focus from descriptive statistics to diagnostic, actionable intelligence for COO and Supply Chain stakeholders:
 
