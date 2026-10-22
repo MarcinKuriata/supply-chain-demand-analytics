@@ -121,7 +121,7 @@ The raw transactional data (`180,519` rows) was ingested into an optimized Star 
 
 ##  Executive Dashboard Preview (Dark UI Control Tower)
 
-The reporting layer is designed as an executive-ready **One-Pager Control Tower** leveraging a modern dark theme (`#0B0F19`) with precise Cyan (`#06B6D4`) analytical accents and strategic Crimson (`#DC2626`) risk indicators.
+The reporting layer is designed as an executive-ready **One-Pager Control Tower** leveraging a modern dark theme with precise Cyan analytical accents and strategic Crimson risk indicators.
 
 ### 1. Executive Operations & Risk Overview (Page 1)
 This core view shifts from descriptive reporting to diagnostic execution, displaying high-level demand trends, financial exposure to fulfillment risks, ABC revenue/profitability alignment, and shipping mode bottlenecks.
