@@ -119,6 +119,21 @@ The raw transactional data (`180,519` rows) was ingested into an optimized Star 
 
 ---
 
+## 🖼️ Executive Dashboard Preview (Dark UI Control Tower)
+
+The reporting layer is designed as an executive-ready **One-Pager Control Tower** leveraging a modern dark theme (`#0B0F19`) with precise Cyan (`#06B6D4`) analytical accents and strategic Crimson (`#DC2626`) risk indicators.
+
+### 1. Executive Operations & Risk Overview (Page 1)
+This core view shifts from descriptive reporting to diagnostic execution, displaying high-level demand trends, financial exposure to fulfillment risks, ABC revenue/profitability alignment, and shipping mode bottlenecks.
+
+![Executive Control Tower Dashboard](visuals/dashboard_overview.png)
+
+### 2. Global Supply Chain Network & Geographic Risk (Page 2)
+A dedicated spatial deep-dive mapping global net sales volume against localized logistics risks and delivery delays.
+
+![Global Supply Chain Map](visuals/map_deep_dive.png)
+---
+
 ## 📈 Power BI Integration & S&OP Metrics
 
 Connected to Power BI Desktop via Python Direct ETL and modeled with dedicated DAX measures in `_Measures`:
