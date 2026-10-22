@@ -127,3 +127,37 @@ Connected to Power BI Desktop via Python Direct ETL and modeled with dedicated D
 - **`OTIF Delivery Rate %`**: Dynamic service level tracking on-time vs scheduled fulfillment.
 - **`Avg Delivery Delay Days`**: Lead-time variance and delay severity.
 - **Visuals**: S&OP demand trend correlation with OTIF rates, market risk distribution, and interactive Dark UI design.
+
+---
+
+## ⚠️ Engineering Challenges & ETL Troubleshooting (Real-World Friction)
+
+Ingesting and transforming nearly 180k raw transactional records (*DataCo Smart Supply Chain*) came with distinct data friction points. Below are the key engineering challenges faced during the ETL and SQL modeling phases, along with their solutions:
+
+1. **Character Encoding Errors in Source CSV:**
+   * **Problem:** Standard `pd.read_csv()` ingestion threw `UnicodeDecodeError` exceptions due to mixed legacy encodings and special accented characters embedded in international market names within the raw dataset.
+   * **Solution:** Enforced explicit decoding using `encoding='ISO-8859-1'` inside the Python ETL script (`python/ingest_to_sql.py`) while programmatically standardizing all column headers to clean `snake_case`.
+
+2. **Data Types & Currency Formatting Anomalies:**
+   * **Problem:** Financial columns (`Sales`, `Benefit per order`) contained leading whitespace and inconsistent comma formatting in the raw text fields, risking SQLite casting columns as `TEXT` instead of numeric `REAL` types.
+   * **Solution:** Integrated Pandas data-type enforcement prior to SQLite insertion, combined with rigorous automated data quality checks (`SQL/00_data_quality_checks.sql`) to filter out NaN anomalies and negative demand outliers before Star Schema population.
+
+3. **Window Function Performance Overhead on Monthly Aggregations:**
+   * **Problem:** Initial iterations of the 3-month rolling moving average (`MOVING_AVG`) created a heavy computational overhead when joining volumes across complex regional hierarchies.
+   * **Solution:** Shifted the heavy lifting from the Power BI DAX layer down to the SQLite database layer by materializing and indexing analytical views (`views`), cutting trendline rendering latency by over 70%.
+
+---
+
+## 💡 Executive Insights & Strategic Business Takeaways
+
+Built as an **Executive Control Tower (Dark UI)**, the finalized dashboard shifts focus from descriptive statistics to diagnostic, actionable intelligence for COO and Supply Chain stakeholders:
+
+1. **The 43% OTIF Crisis is a Distribution Problem, Not an Assortment Flaw:**
+   * Contrary to initial assumptions, breaking down the low On-Time In-Full rate across ABC product segments revealed an identical, stagnant fulfillment rate (~43%) for classes A, B, and C alike. This proves the bottleneck lies in operational logistics rather than core inventory planning.
+   * **Operational Proof:** Isolating OTIF by *Shipping Mode* identified the primary root cause—the **"Second Class"** shipping tier crashes to an abysmal **20%** fulfillment rate, dragging down the global average while Standard Class holds steady near 60%.
+
+2. **Concentrated Financial Risk Exposure:**
+   * Moving beyond a simple count of delayed shipments to an **At-Risk Sales Value** metric exposed the true cash-flow exposure. Over half of the total endangered revenue is concentrated in just two major markets (*Western Europe* and *Central America*), providing an immediate mandate to renegotiate regional carrier SLAs.
+
+3. **Working Capital & Profitability Alignment:**
+   * While ABC Pareto segmentation confirms that Class A drives ~80% of volume, cross-analyzing it with profitability ensures leadership evaluates working capital lockup against actual net returns rather than gross top-line revenue alone.
